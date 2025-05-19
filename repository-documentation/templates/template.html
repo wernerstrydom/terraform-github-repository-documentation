@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>GitHub Repository Configuration: github-compliance-test-repo</title>
+    <style type="text/css">
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; }
+        h1, h2, h3, h4 { color: #333; }
+        h1 { font-size: 1.8em; }
+        h2 { font-size: 1.5em; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 5px;}
+        h3 { font-size: 1.3em; margin-top: 25px;}
+        h4 { font-size: 1.1em; margin-top: 20px;}
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .note { font-style: italic; color: #555; margin-top: 5px; margin-bottom: 10px; }
+        .section { margin-bottom: 30px; }
+        .subsection { margin-left: 20px; margin-bottom: 20px;}
+        .code { font-family: monospace; background-color: #f9f9f9; padding: 2px 4px; border-radius: 3px; }
+        .status-enabled { color: green; font-weight: bold; }
+        .status-disabled { color: red; }
+        .status-notconfigured { color: orange; }
+        .placeholder { color: #888; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<h1>GitHub Repository Configuration: github-compliance-test-repo</h1>
+<p class="note">This page was automatically generated via Terraform. Any manual edits may be overwritten. Last Updated: <span class="placeholder">[Date of Generation]</span></p>
+
+<div class="section" id="general">
+    <h2>1. General Repository Information</h2>
+    <table>
+        <tr>
+            <th>Setting</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Repository Name</td>
+            <td>wernerstrydom-examples/github-compliance-test-repo</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>Test repository for GitHub compliance rules and branch protection</td>
+        </tr>
+        <tr>
+            <td>Default Branch</td>
+            <td>main</td>
+        </tr>
+        <tr>
+            <td>Visibility</td>
+            <td>private</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section" id="clone-options">
+    <h2>2. Clone Options</h2>
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>URL</th>
+        </tr>
+        <tr>
+            <td>HTTPS</td>
+            <td>https://github.com/wernerstrydom-examples/github-compliance-test-repo.git</td>
+        </tr>
+        <tr>
+            <td>SSH</td>
+            <td>git@github.com:wernerstrydom-examples/github-compliance-test-repo.git</td>
+        </tr>
+        <tr>
+            <td>Git</td>
+            <td>git://github.com/wernerstrydom-examples/github-compliance-test-repo.git</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section" id="features">
+    <h2>3. Repository Features</h2>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Issues</td>
+            <td class="status-enabled">Enabled</td>
+        </tr>
+        <tr>
+            <td>Projects</td>
+            <td class="status-enabled">Enabled</td>
+        </tr>
+        <tr>
+            <td>Wiki</td>
+            <td class="status-enabled">Enabled</td>
+        </tr>
+        <tr>
+            <td>Downloads</td>
+            <td class="status-enabled">Enabled</td>
+        </tr>
+        <tr>
+            <td>Discussions</td>
+            <td class="status-disabled">Disabled</td>
+        </tr>
+        <tr>
+            <td>Template Repository</td>
+            <td>No</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section" id="pr-settings">
+    <h2>4. Pull Request Settings (Repository-wide)</h2>
+    <table>
+        <tr>
+            <th>Setting</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Allow Merge Commits</td>
+            <td>Allowed</td>
+        </tr>
+        <tr>
+            <td>Allow Squash Merging</td>
+            <td>Allowed</td>
+        </tr>
+        <tr>
+            <td>Allow Rebase Merging</td>
+            <td>Allowed</td>
+        </tr>
+        <tr>
+            <td>Auto-merge</td>
+            <td class="status-disabled">Disabled</td>
+        </tr>
+        <tr>
+            <td>Delete Branch on Merge</td>
+            <td class="status-disabled">Disabled</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section" id="branch-governance">
+    <h2>5. Branch Governance</h2>
+    <p>Total Branches: 2 <span class="placeholder">(excluding release branches listed below if numerous)</span></p>
+
+    <h3>5.1. Default Branch: <code class="code">main</code></h3>
+    <table>
+        <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Protected</td>
+            <td class="status-enabled">Yes</td>
+        </tr>
+        <tr>
+            <td>Last Commit URL</td>
+            <td>N/A <span class="note">(View on GitHub link was also N/A in source data)</span></td>
+        </tr>
+    </table>
+
+    <h4>5.1.1. Branch Protection Rules for <code class="code">main</code> (Legacy)</h4>
+    <p class="note">These are legacy branch protection settings. For comprehensive rules, also see Repository Rulesets (Section 6).</p>
+    <table>
+        <tr>
+            <th>Protection Rule</th>
+            <th>Setting</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>Require Pull Request Reviews Before Merging</td>
+            <td class="status-enabled">Yes</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Required Approvals</td>
+            <td>1</td>
+            <td>Specifies the number of approving reviews required before a pull request can be merged.</td>
+        </tr>
+        <tr>
+            <td>Dismiss Stale Pull Request Approvals When New Commits Are Pushed</td>
+            <td>No</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Require Review from Code Owners</td>
+            <td>No</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Enforce for Administrators</td>
+            <td class="status-enabled">Yes</td>
+            <td>Branch protection rules are enforced for repository administrators.</td>
+        </tr>
+        <tr>
+            <td>Require Commit Signatures</td>
+            <td>No</td>
+            <td><span class="note">(Note: 'Repository Rulesets' section may specify signature requirements.)</span></td>
+        </tr>
+        <tr>
+            <td>Allow Force Pushes</td>
+            <td class="status-disabled">No</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Allow Deletions</td>
+            <td class="status-disabled">No</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Require Linear History</td>
+            <td>No</td>
+            <td>Prevents merge commits from being pushed to matching branches.</td>
+        </tr>
+        <tr>
+            <td>Require Conversation Resolution Before Merging</td>
+            <td>No</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Lock Branch</td>
+            <td class="status-disabled">No</td>
+            <td>Branch is not locked against modifications.</td>
+        </tr>
+    </table>
+
+    <h3>5.2. Release Branches</h3>
+    <p class="note">Branches matching patterns like <code class="code">release/*</code>, <code class="code">rel/*</code>, etc.</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Branch Name</th>
+            <th>Protected</th>
+            <th>Protection Details (Link/Summary)</th>
+            <th>Last Commit Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="4">No release branches found or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>5.3. Environment-Named Branches</h3>
+    <p class="note">Branches whose names match configured deployment environments (e.g., <code class="code">development</code>, <code class="code">staging</code>, <code class="code">production</code> if used as branches).</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Branch Name</th>
+            <th>Protected</th>
+            <th>Protection Details (Link/Summary)</th>
+            <th>Associated Environment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="4">No environment-named branches found or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section" id="repository-rulesets">
+    <h2>6. Repository Rulesets</h2>
+    <p class="note">Repository rulesets provide advanced ways to control how users can interact with branches and tags in a repository.</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Ruleset Name</th>
+            <th>Enforcement Status</th>
+            <th>Target (Branch/Tag)</th>
+            <th>Bypass Mode</th>
+            <th>Conditions / Rules Applied</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Conventional Commits for Main</td>
+            <td class="status-enabled">Active</td>
+            <td>Branch: <code class="code">main</code></td>
+            <td><span class="placeholder">e.g., Allow for admins</span></td>
+            <td>
+                <strong>Commit Message Pattern:</strong> <code class="code">(feat|fix|docs style|refactor test|chore)(\(.+\))?: .{1,72}$</code> (regex, not negated)<br/>
+                <strong>Required Signatures:</strong> Yes<br/>
+                <strong>Pull Request Requirements:</strong> Code Owner Review: No, Dismiss Stale Reviews: No, Thread Resolution: No, Last Push Approval: No<br/>
+                <strong>Allowed Merge Methods:</strong> merge, squash, rebase<br/>
+                <strong>Required Linear History:</strong> Yes
+            </td>
+        </tr>
+        <tr>
+            <td class="placeholder" colspan="5">No other repository rulesets configured or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section" id="environments-config">
+    <h2>7. Deployment Environments Configuration</h2>
+    <h3>7.1. Environment: <code class="code">el</code></h3>
+    <div class="subsection">
+        <h4>Protection Rules for <code class="code">el</code></h4>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>Required Reviewers</td>
+                <td>Required reviewers: 1 (User: bloudraak)</td>
+            </tr>
+            <tr>
+                <td>Wait Timer</td>
+                <td>Wait timer: 15 minutes</td>
+            </tr>
+            <tr>
+                <td>Deployment Branches (Branch Policy)</td>
+                <td><span class="placeholder">(e.g., refs/heads/main, refs/heads/release/*, or specific branch name. No details provided in source data)</span></td>
+            </tr>
+        </table>
+        <h4>Variables for <code class="code">el</code></h4>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Updated</th>
+            </tr>
+            <tr>
+                <td>VARIABLE1</td>
+                <td>2025-05-19 21:27:08 +0000 UTC</td>
+                <td>2025-05-19 21:27:08 +0000 UTC</td>
+            </tr>
+        </table>
+        <h4>Secrets for <code class="code">el</code></h4>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Updated</th>
+            </tr>
+            <tr>
+                <td>SECRET1</td>
+                <td>2025-05-19 21:26:52 +0000 UTC</td>
+                <td>2025-05-19 21:26:52 +0000 UTC</td>
+            </tr>
+        </table>
+    </div>
+    <p class="placeholder">No other deployment environments configured or data not populated.</p>
+</div>
+
+<div class="section" id="github-releases">
+    <h2>8. GitHub Releases</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Release Tag</th>
+            <th>Release Name</th>
+            <th>Published Date</th>
+            <th>Is Prerelease</th>
+            <th>Is Latest</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="5">No GitHub releases found or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section" id="tags-protection">
+    <h2>9. Tags &amp; Tag Protection</h2>
+    <h3>9.1. Monitored Tags (SemVer <code class="code">vX.Y.Z</code>)</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Tag Name</th>
+            <th>Commit SHA</th>
+            <th>Date Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="3">No tags matching SemVer pattern <code class="code">vX.Y.Z</code> found or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>9.2. Tag Protection Rules</h3>
+    <p class="note">Rules protecting tags, typically those matching patterns like <code class="code">v*</code>.</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Rule Name / Pattern</th>
+            <th>Protection Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="2">No tag protection rules configured or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section" id="advanced-security">
+    <h2>10. Advanced Security</h2>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Status</th>
+            <th>Details / Configuration</th>
+        </tr>
+        <tr>
+            <td>Code Scanning (e.g., CodeQL)</td>
+            <td class="status-notconfigured placeholder">Not Configured</td>
+            <td class="placeholder">e.g., Default setup, Last scan: YYYY-MM-DD, Open alerts: X</td>
+        </tr>
+        <tr>
+            <td>Secret Scanning</td>
+            <td class="status-enabled placeholder">Enabled</td>
+            <td class="placeholder">e.g., Push protection: Enabled, Alerts: Y</td>
+        </tr>
+        <tr>
+            <td>Dependabot Alerts</td>
+            <td class="status-enabled placeholder">Enabled</td>
+            <td class="placeholder">e.g., Open alerts: Z</td>
+        </tr>
+        <tr>
+            <td>Dependabot Security Updates</td>
+            <td class="status-enabled placeholder">Enabled</td>
+            <td class="placeholder">e.g., For npm, Go; Auto-merge PRs: Disabled</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section" id="custom-properties">
+    <h2>11. Custom Properties</h2>
+    <p class="note">Repository-level custom properties used for organization, filtering, or automation.</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Property Name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="2">No custom properties defined or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section" id="automation">
+    <h2>12. Automation</h2>
+    <h3>12.1. GitHub Actions</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Workflow File Name</th>
+            <th>Status</th>
+            <th>Last Run Status</th>
+            <th>Last Run Date</th>
+            <th>Trigger</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="5">No GitHub Actions workflows found or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>12.2. Webhooks</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Webhook URL (Host)</th>
+            <th>Events Subscribed</th>
+            <th>Active</th>
+            <th>SSL Verified</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="placeholder" colspan="4">No webhooks configured or data not populated.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section" id="contacts-collaborators">
+    <h2>13. Contacts &amp; Collaborators</h2>
+    <h3>13.1. Key Contacts</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        <tr>
+            <td>Jane Doe</td>
+            <td>jane.doe@example.com</td>
+            <td>Repository Owner</td>
+        </tr>
+        <tr>
+            <td>John Smith</td>
+            <td>john.smith@example.com</td>
+            <td>Maintainer</td>
+        </tr>
+    </table>
+
+    <h3>13.2. Collaborators &amp; Permissions</h3>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Permission</th>
+        </tr>
+        <tr>
+            <td>bloudraak</td>
+            <td>admin</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section" id="teams">
+    <h2>14. Teams</h2>
+    <p class="placeholder">No teams are defined for this repository (as per source data) or data not populated.</p>
+</div>
+
+<div class="section" id="statistics">
+    <h2>15. Statistics</h2>
+    <p class="placeholder">No statistics are available for this repository (as per source data) or data not populated.</p>
+</div>
+
+</body>
+</html>

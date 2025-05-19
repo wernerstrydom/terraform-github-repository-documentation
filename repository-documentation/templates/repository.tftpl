@@ -1,0 +1,747 @@
+<ac:structured-macro ac:name="info" ac:schema-version="1">
+  <ac:rich-text-body>
+    <p>This page was automatically generated via Terraform. Any manual edits may be overwritten.</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<h2>1. General Repository Information</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>Setting</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Repository Name</td>
+      <td><a href="${try(repository.html_url, "#")}">${repository_full_name}</a></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>${try(repository.description, "") != "" ? repository.description : "No description provided"}</td>
+    </tr>
+    <tr>
+      <td>Default Branch</td>
+      <td>${try(repository.default_branch, "main")}</td>
+    </tr>
+    <tr>
+      <td>Visibility</td>
+      <td>${try(repository.visibility, "unknown")}</td>
+    </tr>
+    %{ if try(repository.language, null) != null ~}
+    <tr>
+      <td>Primary Language</td>
+      <td>${repository.language}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.created_at, null) != null ~}
+    <tr>
+      <td>Created</td>
+      <td>${repository.created_at}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.updated_at, null) != null ~}
+    <tr>
+      <td>Last Updated</td>
+      <td>${repository.updated_at}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.archived, false) ~}
+    <tr>
+      <td>Archived</td>
+      <td>Yes</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(length(repository.topics), 0) > 0 ~}
+    <tr>
+      <td>Topics</td>
+      <td>
+        %{ for topic in repository.topics ~}
+        <ac:structured-macro ac:name="status" ac:schema-version="1">
+          <ac:parameter ac:name="colour">blue</ac:parameter>
+          <ac:parameter ac:name="title">${topic}</ac:parameter>
+        </ac:structured-macro>
+        %{ endfor ~}
+      </td>
+    </tr>
+    %{ endif ~}
+  </tbody>
+</table>
+
+<h2>2. Clone Options</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>Method</th>
+      <th>URL</th>
+    </tr>
+    <tr>
+      <td>HTTPS</td>
+      <td><code>${try(repository.http_clone_url, null) != null ? repository.http_clone_url : try(repository.html_url, "") + ".git"}</code></td>
+    </tr>
+    %{ if repository.ssh_clone_url != null ~}
+    <tr>
+      <td>SSH</td>
+      <td><code>${repository.ssh_clone_url}</code></td>
+    </tr>
+    %{ endif ~}
+    %{ if repository.git_clone_url != null ~}
+    <tr>
+      <td>Git</td>
+      <td><code>${repository.git_clone_url}</code></td>
+    </tr>
+    %{ endif ~}
+  </tbody>
+</table>
+
+<h2>3. Repository Features</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>Feature</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>Issues</td>
+      <td>${try(repository.has_issues, false) ? "Enabled" : "Disabled"}</td>
+    </tr>
+    <tr>
+      <td>Projects</td>
+      <td>${try(repository.has_projects, false) ? "Enabled" : "Disabled"}</td>
+    </tr>
+    <tr>
+      <td>Wiki</td>
+      <td>${try(repository.has_wiki, false) ? "Enabled" : "Disabled"}</td>
+    </tr>
+    <tr>
+      <td>Downloads</td>
+      <td>${try(repository.has_downloads, false) ? "Enabled" : "Disabled"}</td>
+    </tr>
+    %{ if try(repository.has_discussions, null) != null ~}
+    <tr>
+      <td>Discussions</td>
+      <td>${repository.has_discussions ? "Enabled" : "Disabled"}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.has_pages, null) != null ~}
+    <tr>
+      <td>GitHub Pages</td>
+      <td>${repository.has_pages ? "Enabled" : "Disabled"}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.is_template, null) != null ~}
+    <tr>
+      <td>Template Repository</td>
+      <td>${repository.is_template ? "Yes" : "No"}</td>
+    </tr>
+    %{ endif ~}
+  </tbody>
+</table>
+
+<h2>4. Pull Request Settings (Repository-wide)</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>Setting</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>Allow Merge Commits</td>
+      <td>${try(repository.allow_merge_commit, false) ? "Allowed" : "Disabled"}</td>
+    </tr>
+    <tr>
+      <td>Allow Squash Merging</td>
+      <td>${try(repository.allow_squash_merge, false) ? "Allowed" : "Disabled"}</td>
+    </tr>
+    <tr>
+      <td>Allow Rebase Merging</td>
+      <td>${try(repository.allow_rebase_merge, false) ? "Allowed" : "Disabled"}</td>
+    </tr>
+    %{ if try(repository.allow_auto_merge, null) != null ~}
+    <tr>
+      <td>Auto-merge</td>
+      <td>${repository.allow_auto_merge ? "Allowed" : "Disabled"}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.delete_branch_on_merge, null) != null ~}
+    <tr>
+      <td>Delete Branch on Merge</td>
+      <td>${repository.delete_branch_on_merge ? "Enabled" : "Disabled"}</td>
+    </tr>
+    %{ endif ~}
+  </tbody>
+</table>
+
+<h2>5. Branch Governance</h2>
+<p>Total Branches: ${try(length(branches.all), "N/A")}</p>
+
+%{ if length(branches.special) > 0 ~}
+%{ for name, branch in branches.special ~}
+<h3>5.1. Default Branch: <code>${name}</code></h3>
+<table>
+  <tbody>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Protected</td>
+      <td>${try(branch.protected, false) ? "Yes" : "No"}</td>
+    </tr>
+    <tr>
+      <td>Last Commit</td>
+      <td>${try(branch.commit.commit.author.date, "N/A")}</td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td><a href="${try(repository.html_url, "")}/${try("tree/${branch.name}", "")}">View on GitHub</a></td>
+    </tr>
+  </tbody>
+</table>
+
+%{ if try(branch.protection, null) != null ~}
+<h4>5.1.1. Branch Protection Rules for <code>${name}</code> (Legacy)</h4>
+<p>These are legacy branch protection settings. For comprehensive rules, also see Repository Rulesets (Section 6).</p>
+<table>
+  <tbody>
+    <tr>
+      <th>Protection Rule</th>
+      <th>Setting</th>
+      <th>Details</th>
+    </tr>
+    %{ if try(branch.protection.required_pull_request_reviews, null) != null ~}
+    <tr>
+      <td>Require Pull Request Reviews Before Merging</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Required Approvals</td>
+      <td>${try(branch.protection.required_pull_request_reviews.required_approving_review_count, 0)}</td>
+      <td>Specifies the number of approving reviews required before a pull request can be merged.</td>
+    </tr>
+    <tr>
+      <td>Dismiss Stale Pull Request Approvals When New Commits Are Pushed</td>
+      <td>${try(branch.protection.required_pull_request_reviews.dismiss_stale_reviews, false) ? "Yes" : "No"}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Require Review from Code Owners</td>
+      <td>${try(branch.protection.required_pull_request_reviews.require_code_owner_reviews, false) ? "Yes" : "No"}</td>
+      <td></td>
+    </tr>
+    %{ endif ~}
+    <tr>
+      <td>Enforce for Administrators</td>
+      <td>${try(branch.protection.enforce_admins.enabled, false) ? "Yes" : "No"}</td>
+      <td>Branch protection rules are enforced for repository administrators.</td>
+    </tr>
+    <tr>
+      <td>Require Commit Signatures</td>
+      <td>${try(branch.protection.required_signatures.enabled, false) ? "Yes" : "No"}</td>
+      <td>(Note: 'Repository Rulesets' section may specify signature requirements.)</td>
+    </tr>
+    <tr>
+      <td>Allow Force Pushes</td>
+      <td>${try(branch.protection.allow_force_pushes.enabled, false) ? "Yes" : "No"}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Allow Deletions</td>
+      <td>${try(branch.protection.allow_deletions.enabled, false) ? "Yes" : "No"}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Require Linear History</td>
+      <td>${try(branch.protection.required_linear_history.enabled, false) ? "Yes" : "No"}</td>
+      <td>Prevents merge commits from being pushed to matching branches.</td>
+    </tr>
+    <tr>
+      <td>Require Conversation Resolution Before Merging</td>
+      <td>${try(branch.protection.required_conversation_resolution.enabled, false) ? "Yes" : "No"}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Lock Branch</td>
+      <td>${try(branch.protection.lock_branch.enabled, false) ? "Yes" : "No"}</td>
+      <td>Branch is ${try(branch.protection.lock_branch.enabled, false) ? "" : "not "} locked against modifications.</td>
+    </tr>
+  </tbody>
+</table>
+%{ endif ~}
+
+%{ if try(branch.rules, null) != null && length(branch.rules) > 0 ~}
+<h4>5.1.2. Repository Rulesets for <code>${name}</code></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Rule Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for rule in branch.rules ~}
+    <tr>
+      <td>${rule.type}</td>
+      <td>
+        %{ if rule.type == "commit_message_pattern" ~}
+          <strong>Commit Message Pattern:</strong> <code>${try(rule.parameters.pattern, "N/A")}</code> (${try(rule.parameters.operator, "N/A")}, ${try(rule.parameters.negate, false) ? "negated" : "not negated"})<br/>
+          <strong>Name:</strong> ${try(rule.parameters.name, "N/A")}
+        %{ endif ~}
+        
+        %{ if rule.type == "required_signatures" ~}
+          <strong>Required Signatures:</strong> Yes<br/>
+          Commits pushed to this branch must have verified signatures.
+        %{ endif ~}
+        
+        %{ if rule.type == "pull_request" ~}
+          <strong>Pull Request Requirements:</strong><br/>
+          %{ if try(rule.parameters.required_approving_review_count, 0) > 0 ~}
+          Required Approvals: ${rule.parameters.required_approving_review_count}<br/>
+          %{ endif ~}
+          Code Owner Review: ${try(rule.parameters.require_code_owner_review, false) ? "Required" : "Not Required"}<br/>
+          Dismiss Stale Reviews: ${try(rule.parameters.dismiss_stale_reviews_on_push, false) ? "Yes" : "No"}<br/>
+          Thread Resolution: ${try(rule.parameters.required_review_thread_resolution, false) ? "Required" : "Not Required"}<br/>
+          Last Push Approval: ${try(rule.parameters.require_last_push_approval, false) ? "Required" : "Not Required"}<br/>
+          %{ if try(rule.parameters.allowed_merge_methods, null) != null ~}
+          <strong>Allowed Merge Methods:</strong> ${join(", ", rule.parameters.allowed_merge_methods)}
+          %{ endif ~}
+        %{ endif ~}
+        
+        %{ if rule.type == "required_linear_history" ~}
+          <strong>Required Linear History:</strong> Yes<br/>
+          Prevent merge commits. This ensures the branch has a linear Git history.
+        %{ endif ~}
+        
+        %{ if rule.type == "required_deployments" && try(rule.parameters.required_deployment_environments, null) != null ~}
+          <strong>Required Deployments:</strong><br/>
+          Environments: ${join(", ", rule.parameters.required_deployment_environments)}
+        %{ endif ~}
+      </td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ endif ~}
+%{ endfor ~}
+%{ else ~}
+<p>No default/common branches found in this repository.</p>
+%{ endif ~}
+
+<h3>5.2. Release Branches</h3>
+<p>Branches matching patterns like <code>release/*</code>, <code>rel/*</code>, etc.</p>
+%{ if length(branches.releases) > 0 ~}
+<table>
+  <thead>
+    <tr>
+      <th>Branch Name</th>
+      <th>Protected</th>
+      <th>Protection Details</th>
+      <th>Last Commit Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for name, branch in branches.releases ~}
+    <tr>
+      <td><a href="${try(repository.html_url, "")}/${try("tree/${branch.name}", "")}">${name}</a></td>
+      <td>${try(branch.protected, false) ? "Yes" : "No"}</td>
+      <td>
+        <ac:structured-macro ac:name="expand">
+          <ac:parameter ac:name="title">View Protection Details</ac:parameter>
+          <ac:rich-text-body>
+            %{ if try(branch.protection, null) != null ~}
+              <strong>Protection Rules:</strong>
+              <ul>
+                %{ if try(branch.protection.required_pull_request_reviews, null) != null ~}
+                <li>Required PR Reviews: ${try(branch.protection.required_pull_request_reviews.required_approving_review_count, 0)} approvals</li>
+                %{ endif ~}
+                <li>Enforce for Admins: ${try(branch.protection.enforce_admins.enabled, false) ? "Yes" : "No"}</li>
+                <li>Required Signatures: ${try(branch.protection.required_signatures.enabled, false) ? "Yes" : "No"}</li>
+                <li>Required Linear History: ${try(branch.protection.required_linear_history.enabled, false) ? "Yes" : "No"}</li>
+              </ul>
+            %{ endif ~}
+            
+            %{ if try(branch.rules, null) != null && length(branch.rules) > 0 ~}
+              <strong>Repository Rules:</strong>
+              <ul>
+              %{ for rule in branch.rules ~}
+                <li>${rule.type}</li>
+              %{ endfor ~}
+              </ul>
+            %{ endif ~}
+          </ac:rich-text-body>
+        </ac:structured-macro>
+      </td>
+      <td>${try(branch.commit.commit.author.date, "N/A")}</td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ else ~}
+<p><em>No release branches found or data not populated.</em></p>
+%{ endif ~}
+
+<h3>5.3. Environment-Named Branches</h3>
+<p>Branches whose names match configured deployment environments (e.g., <code>development</code>, <code>staging</code>, <code>production</code> if used as branches).</p>
+%{ if length(branches.environments) > 0 ~}
+<table>
+  <thead>
+    <tr>
+      <th>Branch Name</th>
+      <th>Protected</th>
+      <th>Protection Details</th>
+      <th>Associated Environment</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for name, branch in branches.environments ~}
+    <tr>
+      <td><a href="${try(repository.html_url, "")}/${try("tree/${branch.name}", "")}">${name}</a></td>
+      <td>${try(branch.protected, false) ? "Yes" : "No"}</td>
+      <td>
+        <ac:structured-macro ac:name="expand">
+          <ac:parameter ac:name="title">View Protection Details</ac:parameter>
+          <ac:rich-text-body>
+            %{ if try(branch.protection, null) != null ~}
+              <strong>Protection Rules:</strong>
+              <ul>
+                %{ if try(branch.protection.required_pull_request_reviews, null) != null ~}
+                <li>Required PR Reviews: ${try(branch.protection.required_pull_request_reviews.required_approving_review_count, 0)} approvals</li>
+                %{ endif ~}
+                <li>Enforce for Admins: ${try(branch.protection.enforce_admins.enabled, false) ? "Yes" : "No"}</li>
+                <li>Required Signatures: ${try(branch.protection.required_signatures.enabled, false) ? "Yes" : "No"}</li>
+                <li>Required Linear History: ${try(branch.protection.required_linear_history.enabled, false) ? "Yes" : "No"}</li>
+              </ul>
+            %{ endif ~}
+            
+            %{ if try(branch.rules, null) != null && length(branch.rules) > 0 ~}
+              <strong>Repository Rules:</strong>
+              <ul>
+              %{ for rule in branch.rules ~}
+                <li>${rule.type}</li>
+              %{ endfor ~}
+              </ul>
+            %{ endif ~}
+          </ac:rich-text-body>
+        </ac:structured-macro>
+      </td>
+      <td>${name}</td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ else ~}
+<p><em>No environment-named branches found or data not populated.</em></p>
+%{ endif ~}
+
+<h2>6. Repository Rulesets</h2>
+<p>Repository rulesets provide advanced ways to control how users can interact with branches and tags in a repository.</p>
+
+%{ if (length(branches.special) > 0 && (try(branches.special[repository.default_branch].rules, null) != null && length(branches.special[repository.default_branch].rules) > 0)) ~}
+<table>
+  <thead>
+    <tr>
+      <th>Ruleset Name</th>
+      <th>Enforcement Status</th>
+      <th>Target (Branch/Tag)</th>
+      <th>Bypass Mode</th>
+      <th>Conditions / Rules Applied</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for rule in branches.special[repository.default_branch].rules ~}
+    <tr>
+      <td>${try(rule.parameters.name, "Repository Ruleset")}</td>
+      <td>Active</td>
+      <td>Branch: <code>${repository.default_branch}</code></td>
+      <td>Standard</td>
+      <td>
+        %{ if rule.type == "commit_message_pattern" ~}
+          <strong>Commit Message Pattern:</strong> <code>${try(rule.parameters.pattern, "N/A")}</code> (${try(rule.parameters.operator, "regex")}, ${try(rule.parameters.negate, false) ? "negated" : "not negated"})<br/>
+        %{ endif ~}
+        
+        %{ if rule.type == "required_signatures" ~}
+          <strong>Required Signatures:</strong> Yes<br/>
+        %{ endif ~}
+        
+        %{ if rule.type == "pull_request" ~}
+          <strong>Pull Request Requirements:</strong> Code Owner Review: ${try(rule.parameters.require_code_owner_review, false) ? "Required" : "Not Required"}, Dismiss Stale Reviews: ${try(rule.parameters.dismiss_stale_reviews_on_push, false) ? "Yes" : "No"}<br/>
+          %{ if try(rule.parameters.allowed_merge_methods, null) != null ~}
+          <strong>Allowed Merge Methods:</strong> ${join(", ", rule.parameters.allowed_merge_methods)}<br/>
+          %{ endif ~}
+        %{ endif ~}
+        
+        %{ if rule.type == "required_linear_history" ~}
+          <strong>Required Linear History:</strong> Yes
+        %{ endif ~}
+      </td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ else ~}
+<p>No repository rulesets configured or data not populated.</p>
+%{ endif ~}
+
+<h2>7. Deployment Environments Configuration</h2>
+%{ if include_environments ~}
+%{ if length(environments) > 0 ~}
+%{ for env_name, details in environments ~}
+<h3>7.1. Environment: <code>${env_name}</code></h3>
+<div style="margin-left: 20px;">
+  <h4>Protection Rules for <code>${env_name}</code></h4>
+  %{ if try(details.protection_rules, null) != null && length(details.protection_rules) > 0 ~}
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+    %{ for rule in details.protection_rules ~}
+      <tr>
+        <td>${rule.type}</td>
+        <td>
+          %{ if rule.type == "branch_policy" ~}
+            %{ if try(rule.protected_branches, false) ~}
+            Protected branches only
+            %{ endif ~}
+            %{ if try(rule.custom_branch_policies, false) ~}
+            Custom branch policies
+            %{ endif ~}
+          %{ endif ~}
+          
+          %{ if rule.type == "wait_timer" ~}
+            Wait timer: ${try(rule.wait_timer, 0)} minutes
+          %{ endif ~}
+          
+          %{ if rule.type == "required_reviewers" ~}
+            Required reviewers: ${length(try(rule.reviewers, []))}
+            %{ if try(rule.reviewers, null) != null && length(rule.reviewers) > 0 ~}
+            <ul>
+              %{ for reviewer in rule.reviewers ~}
+                %{ if try(reviewer.type, "") == "User" ~}
+                <li>User: ${try(reviewer.reviewer.login, "Unknown")}</li>
+                %{ endif ~}
+                %{ if try(reviewer.type, "") == "Team" ~}
+                <li>Team: ${try(reviewer.reviewer.name, reviewer.reviewer.slug, "Unknown")}</li>
+                %{ endif ~}
+              %{ endfor ~}
+            </ul>
+            %{ endif ~}
+          %{ endif ~}
+        </td>
+      </tr>
+    %{ endfor ~}
+    </tbody>
+  </table>
+  %{ else ~}
+  <p>No protection rules defined for this environment.</p>
+  %{ endif ~}
+
+  <h4>Variables for <code>${env_name}</code></h4>
+  %{ if try(details.variables, null) != null && length(details.variables) > 0 ~}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+    %{ for var in details.variables ~}
+      <tr>
+        <td>${var.name}</td>
+        <td>${try(var.created_at, "N/A")}</td>
+        <td>${try(var.updated_at, "N/A")}</td>
+      </tr>
+    %{ endfor ~}
+    </tbody>
+  </table>
+  %{ else ~}
+  <p>No variables defined for this environment.</p>
+  %{ endif ~}
+  
+  <h4>Secrets for <code>${env_name}</code></h4>
+  %{ if try(details.secrets, null) != null && length(details.secrets) > 0 ~}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+    %{ for secret in details.secrets ~}
+      <tr>
+        <td>${secret.name}</td>
+        <td>${try(secret.created_at, "N/A")}</td>
+        <td>${try(secret.updated_at, "N/A")}</td>
+      </tr>
+    %{ endfor ~}
+    </tbody>
+  </table>
+  %{ else ~}
+  <p>No secrets defined for this environment (or access is restricted).</p>
+  %{ endif ~}
+</div>
+%{ endfor ~}
+%{ else ~}
+<p>No environments defined for this repository.</p>
+%{ endif ~}
+%{ endif ~}
+
+<h2>8. GitHub Releases</h2>
+<p>No GitHub releases found or data not populated.</p>
+
+<h2>9. Tags &amp; Tag Protection</h2>
+<p>No tag protection rules configured or data not populated.</p>
+
+<h2>10. Advanced Security</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>Feature</th>
+      <th>Status</th>
+      <th>Details / Configuration</th>
+    </tr>
+    %{ if try(repository.vulnerability_alerts, null) != null ~}
+    <tr>
+      <td>Dependabot Alerts</td>
+      <td>${repository.vulnerability_alerts ? "Enabled" : "Disabled"}</td>
+      <td></td>
+    </tr>
+    %{ else ~}
+    <tr>
+      <td colspan="3">No security information available for this repository.</td>
+    </tr>
+    %{ endif ~}
+  </tbody>
+</table>
+
+<h2>11. Custom Properties</h2>
+<p>No custom properties defined or data not populated.</p>
+
+<h2>12. Automation</h2>
+<p>No GitHub Actions workflows or webhooks found or data not populated.</p>
+
+<h2>13. Contacts &amp; Collaborators</h2>
+<h3>13.1. Key Contacts</h3>
+%{ if length(contacts) > 0 ~}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for contact in contacts ~}
+    <tr>
+      <td>${contact.name}</td>
+      <td>${contact.email}</td>
+      <td>${contact.role}</td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ else ~}
+<p>No contacts defined for this repository.</p>
+%{ endif ~}
+
+%{ if include_collaborators ~}
+<h3>13.2. Collaborators &amp; Permissions</h3>
+%{ if length(collaborators) > 0 ~}
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Permission</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for collaborator in collaborators ~}
+    <tr>
+      <td><a href="https://github.com/${collaborator.login}">${collaborator.login}</a></td>
+      <td>${collaborator.permission}</td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ else ~}
+<p>No collaborators defined for this repository.</p>
+%{ endif ~}
+%{ endif ~}
+
+%{ if include_teams ~}
+<h2>14. Teams</h2>
+%{ if length(teams) > 0 ~}
+<table>
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Permission</th>
+    </tr>
+  </thead>
+  <tbody>
+  %{ for team in teams ~}
+    <tr>
+      <td>${team.slug}</td>
+      <td>${team.permission}</td>
+    </tr>
+  %{ endfor ~}
+  </tbody>
+</table>
+%{ else ~}
+<p>No teams defined for this repository.</p>
+%{ endif ~}
+%{ endif ~}
+
+<h2>15. Statistics</h2>
+%{ if try(repository.fork, false) || try(repository.forks_count, 0) > 0 || try(repository.open_issues_count, 0) > 0 || try(repository.stargazers_count, 0) > 0 || try(repository.subscribers_count, 0) > 0 || try(repository.size, null) != null ~}
+<table>
+  <tbody>
+    %{ if try(repository.fork, false) ~}
+    <tr>
+      <td>Is Fork</td>
+      <td>Yes</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.forks_count, 0) > 0 ~}
+    <tr>
+      <td>Forks</td>
+      <td>${repository.forks_count}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.open_issues_count, 0) > 0 ~}
+    <tr>
+      <td>Open Issues</td>
+      <td>${repository.open_issues_count}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.stargazers_count, 0) > 0 ~}
+    <tr>
+      <td>Stars</td>
+      <td>${repository.stargazers_count}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.subscribers_count, 0) > 0 ~}
+    <tr>
+      <td>Watchers</td>
+      <td>${repository.subscribers_count}</td>
+    </tr>
+    %{ endif ~}
+    %{ if try(repository.size, null) != null ~}
+    <tr>
+      <td>Size</td>
+      <td>${repository.size} KB</td>
+    </tr>
+    %{ endif ~}
+  </tbody>
+</table>
+%{ else ~}
+<p>No statistics available for this repository.</p>
+%{ endif ~}
